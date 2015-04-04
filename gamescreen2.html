@@ -4,66 +4,87 @@
 
   <head>
     <meta charset="utf8" />
-  <link rel="stylesheet" type="text/css" href="stylesheetgame.css" />
-     <title>Gamescreen</title>
+    <link rel="stylesheet" type="text/css" href="stylesheetgame.css" />
+    <title>Gamescreen</title>
   </head>
 
-  <body> 
-    <div id="closer" style="background-color: #eee; padding: 20px; border-radius: 50%; z-index: 100; display: none; position: absolute; top: 45px; right: 45px; font-size: 45px;">X</div>  
+  <body>
+    <div id="game">
+      <div id="closer" style="background-color: #eee; padding: 20px; border-radius: 50%; z-index: 100; display: none; position: absolute; top: 45px; right: 45px; font-size: 45px;">X</div> 
 
-    <div id="roundscount"></div>
-    <div id="currentBack">XBack</div>
-    <progress id="score" value="0" max="100"></progress>
+      <div id="loading"></div>
 
-    <br>
-    <br>
-    <div id="gamesquares"></div>
+      <div id="menu">
+        <button id="menu_playgame">PLAY</button>
+        <button id="menu_score">SCORE</button>
+        <button id="menu_settings">SETTINGS</button>
+      </div>
 
 
-      <br>
-      <br>
+      <div id="play">         
 
-    <div style="margin-left:-1em;">
-      <button class="buttonsquare" id="trackposition">Pos</button>
-      <button class="buttonsquare" id="trackall">All</button>
-      <button class="buttonsquare" id="trackcolor">Col</button>
+        <div id="roundscount"></div>
+        <div id="currentBack">XBack</div>
+        <progress id="score" value="0" max="100"></progress>
+        <br>
+        <br>
+        <div id="gamesquares"></div>
+          <br>
+          <br>
+        <div style="margin-left:-1em;">
+          <button class="buttonsquare" id="trackposition">Pos</button>
+          <button class="buttonsquare" id="trackall">All</button>
+          <button class="buttonsquare" id="trackcolor">Col</button>
+        </div>
+
+        <div style="margin-top: 40px;">
+          <button id="play" class="buttonsquare" style="background-color:green;color:#fff;border-color:aquamarine;">Play</button>
+          <button id="restart" class="buttonsquare" style="background-color:orange;color:#fff;border-color:yellow;">Restart</button>
+          <button id="stop" class="buttonsquare" style="background-color:red;color:#fff;border-color:yellow;">Stop</button>
+        </div>
+
+        <div style="margin-top: 20px;">
+          <label for="settingMatchPercent">Match %&nbsp&nbsp&nbsp</label> <input id="settingMatchPercent" type="number" min="0.01" max="1" value="0.3" step="0.1" placeholder="Match Percent" /><br/>
+          <label for="settingNBack">X Back&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label> <input id="settingNBack" type="number" min="1" placeholder="X Back" /><br/>
+          <label for="settingSquares">Board Size</label> <input id="settingSquares" type="number" min="1" placeholder="Board Size" />
+          <br/>
+          <label for="settingRounds">Rounds&nbsp&nbsp&nbsp&nbsp&nbsp</label> <input id="settingRounds" type="number" min="1" value="10" placeholder="Rounds" />
+          <label for="settingStimuli1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspStimuli 1</label>  
+            <select id="stimuliOne"> 
+              <option value="positionStim">Position</option>
+              <option value="colorStim">Color</option>
+              <option value="audioStim">Audio</option>
+            </select>
+          <label for="settingStimuli2">Stimuli 2</label> 
+            <select id="stimuliTwo">
+              <option value="colorStim">Color</option>
+              <option value="positionStim">Position</option>
+              <option value="audioStim">Audio</option>
+            </select>
+        </div>
+
+        <div id="result"></div>
+        <div id="showResult"></div>
+
+        <div class="backbutton">  
+          <h4><a href="index.html" style="position: relative; margin-left: 73em;">Tillbaka</a></h4>
+        </div>
+
+        
+      </div>
+
+
+      <div id="over"></div>
+
+
+      <div id="scores">
+      </div>
+
+      <div id="settings"></div>
+
     </div>
 
-    <div style="margin-top: 40px;">
-      <button id="play" class="buttonsquare" style="background-color:green;color:#fff;border-color:aquamarine;">Play</button>
-      <button id="restart" class="buttonsquare" style="background-color:orange;color:#fff;border-color:yellow;">Restart</button>
-      <button id="stop" class="buttonsquare" style="background-color:red;color:#fff;border-color:yellow;">Stop</button>
-    </div>
-
-    <div style="margin-top: 20px;">
-      <label for="settingMatchPercent">Match %&nbsp&nbsp&nbsp</label> <input id="settingMatchPercent" type="number" min="0.01" max="1" value="0.3" step="0.1" placeholder="Match Percent" /><br/>
-      <label for="settingNBack">X Back&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label> <input id="settingNBack" type="number" min="1" placeholder="X Back" /><br/>
-      <label for="settingSquares">Board Size</label> <input id="settingSquares" type="number" min="1" placeholder="Board Size" />
-      <br/>
-      <label for="settingRounds">Rounds&nbsp&nbsp&nbsp&nbsp&nbsp</label> <input id="settingRounds" type="number" min="1" value="10" placeholder="Rounds" />
-      <label for="settingStimuli1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspStimuli 1</label>  
-        <select id="stimuliOne"> 
-          <option value="positionStim">Position</option>
-          <option value="colorStim">Color</option>
-          <option value="audioStim">Audio</option>
-        </select>
-      <label for="settingStimuli2">Stimuli 2</label> 
-        <select id="stimuliTwo">
-          <option value="colorStim">Color</option>
-          <option value="positionStim">Position</option>
-          <option value="audioStim">Audio</option>
-        </select>
-    </div>
-
-    <div id="result"></div>
-    <div id="showResult"></div>
-
-    <div class="backbutton">  
-      <h4><a href="index.html" style="position: relative; margin-left: 73em;">Tillbaka</a></h4>
-    </div>
-
-    <div id="scores" style="display:none; position: absolute; left: 0; top: 0;  width: 100%; height: 100%; background-color: #fff;">
-    </div>
+    
 
     <script type="text/javascript" src="script2.js"></script>
  

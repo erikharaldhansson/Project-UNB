@@ -1,0 +1,73 @@
+html {
+	background-color: #cd3d7c;	
+}
+
+.nback_select {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	width: 32px;
+	height: 32px;
+	background-color: #fff;
+	border-right: 1px solid #cd3d7c;
+}
+
+.cell {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	width: 250px;
+	height: 250px;
+
+	background-image: url('assets/logo.png');
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	
+	font-family: Helvetica;
+	font-size: 30px;
+	color: white;
+
+	border-radius: 50%;
+	background-color: #d24e89;
+	border: 1px solid #bf1963;
+}
+
+.cell.blinking {
+  -webkit-animation: 1s blink step-end infinite;
+	-moz-animation: 1s blink step-end infinite;
+	-ms-animation: 1s blink step-end infinite;
+	-o-animation: 1s blink step-end infinite;
+	animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+	from,to {
+	color: transparent;
+}
+ 50% {
+    color: black;
+ }
+
+}
+
+@-moz-keyframes blink {
+	from,to {
+	color: transparent;
+}
+ 50% {
+   color: black;
+ }
+
+}
+
+
+.axis path {
+    fill: none;
+    stroke: #bf1963;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-family: Helvetica;
+    font-size: 13px;
+}

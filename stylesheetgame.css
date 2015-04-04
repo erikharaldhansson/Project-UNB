@@ -1,6 +1,12 @@
-body {
-	font-family: Arial;
+html {
 }
+
+html,body {
+	font-family: Arial;
+	padding: 0;
+	margin: 0;
+}
+
 
 * {
 }
@@ -45,17 +51,16 @@ p {
 	
 }
 
-body {
-	border: 0.5em solid black;
-	
-   padding-top: 3em;
-   padding-left: 4em;
 
+
+#game {
+	width: 750px;
+	height: 1334px;
 }
 
-html {
+#loading,#menu,#play,#over,#settings,#scores {
+	display: none;	
 }
-
 
 
 .gamesquare {

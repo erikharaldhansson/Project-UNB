@@ -9,6 +9,19 @@
 // graphics
 
 
+// Asset Loading
+var img = new Image();
+img.src = "assets/nback_start.png";
+
+loading.style.display = "block";
+loading.innerHTML = "<img src="+ img.src + "/>";
+
+setTimeout(function(){
+  loading.style.display = "none";
+  menu.style.display = "block";
+}, 3000);
+
+
 var colorStim = {
   type: "color",
   values: ['Purple','Green','Orange','Yellow', 'Red', 'Pink','Aqua']
@@ -25,12 +38,12 @@ var positionStim = {
 }
 
 
-    for( i=0 ; i<audioStim.values.length ; i++) {
-      var audio = new Audio();
-      var audioExt = (audio.canPlayType('audio/mpeg;')) ? "ogg":"mp3";  
-      audio.src = 'stimuli/audio/'+ audioStim.values[i] + '.' + audioExt;    
-      audioStim.values[i] = audio;       
-    }
+for( i=0 ; i<audioStim.values.length ; i++) {
+  var audio = new Audio();
+  var audioExt = (audio.canPlayType('audio/mpeg;')) ? "ogg":"mp3";  
+  audio.src = 'stimuli/audio/'+ audioStim.values[i] + '.' + audioExt;    
+  audioStim.values[i] = audio;       
+}
 
 
 var preStimuliOne = document.getElementById("stimuliOne").value; // Retrieves user choice of stimuli
@@ -50,7 +63,7 @@ console.log(stimuli);
 
 //  
 
-
+var state = "menu";
 var gameState = "stopped"; // Track playing game or not
 var start;
 
@@ -412,7 +425,7 @@ function clickTrack (ev) {
         }        
 
       break;
-      case "play":
+      case "play":        
         switch (gameState) {
           case "stopped":
             play.innerHTML = "Pause";
@@ -449,12 +462,21 @@ function clickTrack (ev) {
         play.innerHTML = "Play";
         gameState = "stopped";        
       break;
-      case "currentBack":        
-
+      case "menu_score":        
+        state = "score";
         scores.style.display = "block";
         closer.style.display = "block";
         
         scores.innerHTML = playedGamesHTML();
+      break;
+      case "menu_playgame":
+        state = document.getElementById(state);
+        state.style.display = "none";
+        state = "play";
+        gameState="playing";
+        play.style.display = "block";
+        setupGame();
+        start = setInterval(function(){ setColor() }, 2000); // starts engine, runs it every 2 seconds
       break;
       case "closer":
         scores.style.display = "none";
