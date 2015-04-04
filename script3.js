@@ -34,7 +34,7 @@ var gameConfig = {
 var gameParams = {
 	stimuli: ["green","blue","purple","black","orange","red"],
 	stimuliShow: 1200,
-	stimuliDelay: 500,
+	stimuliDelay: 400,
 	boardSize: 1,
 	nBack: 2,
 	matchChance: 0.3,
