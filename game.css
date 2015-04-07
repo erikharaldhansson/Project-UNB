@@ -1,6 +1,29 @@
 html {
 	background-color: #cd3d7c;	
+	
 }
+
+body {
+	margin: 0;
+	padding: 0;	
+	width: 100%;
+	height: 100%;	
+}
+
+h1 {
+	color: #fff;
+}
+
+.middle {
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+
+
 
 .nback_select {
 	display: table-cell;
@@ -12,17 +35,18 @@ html {
 	border-right: 1px solid #cd3d7c;
 }
 
+.gameboard {
+	position: relative;
+	margin: 0 auto;
+	text-align: center;
+}
+
 .cell {
-	display: table-cell;
 	vertical-align: middle;
+	display: table-cell;	
 	text-align: center;
 	width: 250px;
-	height: 250px;
-
-	background-image: url('assets/logo.png');
-	background-size: 50%;
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
+	height: 250px;	
 	
 	font-family: Helvetica;
 	font-size: 30px;
@@ -33,12 +57,41 @@ html {
 	border: 1px solid #bf1963;
 }
 
+
+
+.nav {
+	display: absolute;
+	bottom: 0px;
+	text-align: center;
+}
+
+.btn {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: #fff;
+}
+.btn.small {
+	width: 50px;
+	height: 50px;
+}
+
 .cell.blinking {
   -webkit-animation: 1s blink step-end infinite;
 	-moz-animation: 1s blink step-end infinite;
 	-ms-animation: 1s blink step-end infinite;
 	-o-animation: 1s blink step-end infinite;
 	animation: 1s blink step-end infinite;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.8;
 }
 
 @keyframes "blink" {

@@ -8,10 +8,22 @@
   </head>
 
   <body>
-  	<div id="nback" style="margin-bottom: 10px;"></div>
+    <!-- Suggested game states -->
+    <div id="splash"></div> <!-- Initial asset loading, network calls, etc. -->    
+    <div id="menu" class="middle"></div> <!-- Suggesting that we can have a tutorial navigation built in this state -->
+    <div id="game" class="middle"></div> <!-- Game will always count down from 3 when entering this state from start or resume -->
+    <div id="pause"></div> <!-- Resume and quit (quit will go to score) -->
+    <div id="profile" class="middle"></div> <!-- Will have player name, chart, and score list -->
+    <div id="game_over"></div> <!-- Will show the result with option to replay -->
+    <!-- End suggested game states-->
+
+    <!-- Development divs to be replaced with above-->
+  	<div id="settings" style="margin-bottom: 10px;"></div>
     <div id="gameboard"></div>
     <svg id="visualisation" width="250" height="250"></svg>
-    <div id="result"></div>   
+    <div id="result"></div> 
+    <!-- End development divs -->
+
     <script type="text/javascript" src="script3.js"></script>
 
   </body>
