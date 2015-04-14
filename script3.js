@@ -19,6 +19,7 @@
 // TODO: Separate scores by nBack level
 
 
+
 var playerParams = {
 	name: "Rasmus",
 	result: []	// Resultatet lagras efer varje spel i denna array
@@ -59,23 +60,23 @@ function drawBoard () {
 		cells += "<div id='stimtrack' class='cell'></div>";
 	}
 	game.innerHTML = cells;	
-	game.innerHTML += "<div class='nav'><button class='btn' id='btn_match'>+</button></div>";
+	game.innerHTML += "<br/><br/><div class='nav'><button class='btn' id='btn_match'>+</button></div>";
 	startTimer(3,stimtrack);		
 }
 
 function startTimer(duration, display) {
     var timer = duration;
-    display.textContent = duration;
+    
     var interval = setInterval(function () {       
         
         display.textContent = timer;        
 
         if (--timer < 0) {
         	clearInterval(interval);
-        	display.textContent = "";
+        	display.textContent = "GO";
             startGame();
         }
-    }, 1000);
+    }, 800);
 }
 
 
@@ -108,7 +109,7 @@ function displayRound () {
 	currentPosition.innerHTML = playerParams.result[0].score;
 	playerParams.result[0].trail.unshift(currentStimuli);
 	//console.log(playerParams.result[0].trail);
-	setTimeout(function(){ currentPosition.style.backgroundColor = '#d24e89' }, gameParams.stimuliDelay);
+	setTimeout(function(){ currentPosition.style.backgroundColor = '#ddd' }, gameParams.stimuliDelay);
 	gameParams.streaking = false;
 }
 
@@ -125,11 +126,22 @@ function gameOver () {
 	console.log("dead! current stimuli " + gameParams.stimuli[playerParams.result[0].trail[0]]);
 	console.log("nback stimuli " + gameParams.stimuli[playerParams.result[0].trail[gameParams.nBack]]);
 
+
+
+	var highScore = Math.max.apply(Math,playerParams.result.map(function(o){return o.score;}))
+
+
+
 	game_over.className = 'overlay';
-	game_over.innerHTML = "<div class='middle' style='text-align: center;''><h1 style='color: #fff;'>Game Over</h1><br/><button class='btn' id='btn_restart'>Restart</button><br/><button class='btn' id='btn_menu'>Menu</button></div>";
+	game_over.innerHTML = "<div class='middle' style='text-align: center;'>";
+	game_over.innerHTML += "<h1 style='color: #fff;'>Game Over</h1><br/><br/>";
+	game_over.innerHTML += "<h2 style='color: #fff;'>Score " + playerParams.result[0].score + "</h2><br/><br/>";
+	game_over.innerHTML += "<h2 style='color: #fff;'>High Score " + highScore + "</h2><br/><br/>";
+	game_over.innerHTML += "<button class='btn' id='btn_restart'>Restart</button><br/><br/>";
+	game_over.innerHTML += "<button class='btn' id='btn_menu'>Menu</button></div>";
 	
 	var currentPosition = document.getElementById("game").childNodes[0];	
-	currentPosition.style.backgroundColor = '#d24e89';
+	currentPosition.style.backgroundColor = '#ddd';
 	
 	gameParams.streaking = false;
 	gameParams.start = undefined;
@@ -159,13 +171,30 @@ function gameOver () {
 function loadResult () {
 	//localStorage.removeItem('result'); // Debug funktion för att rensa local storage
 
+	// This routine will sort the array of objects to create a highscore list
+	//playerParams.result.sort(function(a,b) { return parseFloat(a.score) - parseFloat(b.score) } );
+
 	var storResult = localStorage.getItem('result');
 	if (storResult) {
 		playerParams.result = JSON.parse(storResult);
 	}
 
-	profile.innerHTML += JSON.stringify(playerParams.result).length;
-	profile.innerHTML += JSON.stringify(playerParams.result);
+	var htmlCode = "<table>";
+
+	for (i = 0 ; i < playerParams.result.length ; i++) {
+
+		htmlCode += "<tr>";
+		htmlCode += "<td>" + playerParams.result[i].date + "</td>";
+		htmlCode += "<td>" + playerParams.result[i].player + "</td>";
+		htmlCode += "<td>" + playerParams.result[i].nback + "</td>";
+		htmlCode += "<td>" + playerParams.result[i].score + "</td>";
+		htmlCode += "</tr>";
+
+	}
+
+	htmlCode += "</tr>";
+	
+	profile.innerHTML += htmlCode;
 }
 
 
@@ -321,39 +350,39 @@ function prepareGame() {
 // Currently not working as expected
 // Initial research is pointing to Map/Reduce solution
 
-var tempDate = 0;
+//var tempDate = 0;
 
-var revResult = new Array();
-revResult = playerParams.result.slice(0);
-revResult.reverse();
-var score = 0;
+//var revResult = new Array();
+//revResult = playerParams.result.slice(0);
+//revResult.reverse();
+//var score = 0;
 
-var intervalDate = 0;
-var iter = 0;
+//var intervalDate = 0;
+//var iter = 0;
 
-var avgScore = [];
+//var avgScore = [];
 
 // Doesn't count the first entry
-for (i=0 ; i < revResult.length ; i++) {		 
+//for (i=0 ; i < revResult.length ; i++) {		 
 	
-	if (intervalDate == 0) intervalDate = revResult[i].date + 86400000;
-	score += revResult[i].score;
-	iter ++;
+//	if (intervalDate == 0) intervalDate = revResult[i].date + 86400000;
+//	score += revResult[i].score;
+//	iter ++;
 
-	if (revResult[i].date <= intervalDate) {
+//	if (revResult[i].date <= intervalDate) {
 			
-	} else {
-		avgScore.push(score / iter);
-		score = 0;
-		iter = 0;
+//	} else {
+//		avgScore.push(score / iter);
+//		score = 0;
+//		iter = 0;
 
-		intervalDate = revResult[i].date + 86400000;		
-	}
-}
+//		intervalDate = revResult[i].date + 86400000;		
+//	}
+//}
 
-if (avgScore.length == 0) avgScore.push(score / iter);
+//if (avgScore.length == 0) avgScore.push(score / iter);
 
-console.log(avgScore);
+//console.log(avgScore);
 
 
 

@@ -2,9 +2,12 @@
 <html>
   <head>
     <meta charset="utf8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />    
     <link rel="stylesheet" type="text/css" href="game.css" />
     <title>Gamescreen</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>    
+    <script src="fastclick.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>  
   </head>
 
   <body>
@@ -17,14 +20,21 @@
     <div id="game_over"></div> <!-- Will show the result with option to replay -->
     <!-- End suggested game states-->
 
-    <!-- Development divs to be replaced with above-->
-  	<div id="settings" style="margin-bottom: 10px;"></div>
-    <div id="gameboard"></div>
-    <svg id="visualisation" width="250" height="250"></svg>
-    <div id="result"></div> 
+    <!-- Development divs to be replaced with above-->  	
+    <svg id="visualisation" width="250" height="250"></svg>   
     <!-- End development divs -->
 
     <script type="text/javascript" src="script3.js"></script>
+    <script>
+    document.ontouchmove = function(e) {e.preventDefault()}; // Disable scrolling of page
+    
+    // Remove 300ms delay in certain browsers such as Safari
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+    </script>
 
   </body>
 </html>
