@@ -51,7 +51,7 @@ function splashScreen() {
 	// 
 	splash.innerHTML = "<div class='middle'><h1>Loading...</h1></div>";
 
-	setTimeout(loadMenu, 3000);
+	setTimeout(loadMenu, 1500);
 
 	function loadMenu() {
 		splash.innerHTML = "";		
@@ -90,7 +90,7 @@ function startTimer(duration, display) {
 
         if (--timer < 0) {
         	clearInterval(interval);
-        	display.textContent = "READY";
+        	display.textContent = "READY!";
             startGame();
         }
     }, 800);
@@ -262,7 +262,7 @@ function loadResult () {
 
 	htmlCode += "</tr>";
 	
-	profile.innerHTML += htmlCode;
+	return htmlCode;
 }
 
 
@@ -329,9 +329,22 @@ function initChart() {
 
 function mainMenu() {
 	document.addEventListener('click', menuTrack, false);
-	menu.innerHTML = "<div class='middle'><button class='btn' id='btn_start'>Play</button>";
-	menu.innerHTML += "<br/><br/><button class='btn' id='btn_profile'>Profile</button>";
-	menu.innerHTML += "<br/><br/><button class='btn' id='btn_stats'>Stats</button></div>";
+
+	var htmlContent = "<div class='menuButtonsWrapper'><div id='addvisible' class='MenuButtons'>";
+	htmlContent += "<button class='btn buttonInoutWrapper addButtonWrapper' id='btn_start'>Play</button>";
+	htmlContent += "<button class='btn buttonInoutWrapper' id='btn_profile'>Profile</button>";
+	htmlContent += "<button class='btn buttonInoutWrapper' id='btn_stats'>Stats</button>";
+	htmlContent += "</div></div>";
+
+	menu.innerHTML = htmlContent;
+	
+
+	setTimeout(animIcons, 200);
+
+	function animIcons() {
+		addvisible.className = addvisible.className + ' visible';
+	}
+	
 
 	function menuTrack (ev) {
     switch (ev.target.id) {
@@ -355,8 +368,10 @@ function mainMenu() {
 }
 
 function showStats() {
-	stats.innerHTML = "<button class='btn small' id='close'>X</button>";
-	loadResult();
+	
+	var statsHTML = closeButton();
+	statsHTML += loadResult();
+	stats.innerHTML = statsHTML;
 	//initChart();
 
 	document.addEventListener('click', statsTrack, false);
@@ -364,7 +379,7 @@ function showStats() {
     function statsTrack (ev) {
     	switch (ev.target.id) {
 	    	case "close":
-	    		profile.innerHTML = "";
+	    		stats.innerHTML = "";
 	    		document.removeEventListener('click', statsTrack);
 	    		mainMenu();
 	    	break;
@@ -372,8 +387,12 @@ function showStats() {
     }
 }
 
+function closeButton() {
+	return "<button class='close btn small' id='close'>X</button>";
+}
+
 function showProfile() {
-	profile.innerHTML = "<button class='btn small' id='close'>X</button>";
+	profile.innerHTML = closeButton();
     profile.innerHTML += "<div class='avatar' id='player_avatar'></div>";
     profile.innerHTML += "<div class='name' id='player_name'>" + playerParams.name + "</div>";
     

@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'valbold';
-    src: url('assets/font/VAL-webfont.eot');
-    src: url('assets/font/VAL-webfont.eot?#iefix') format('embedded-opentype'),
-         url('assets/font/VAL-webfont.woff2') format('woff2'),
-         url('assets/font/VAL-webfont.woff') format('woff'),
-         url('assets/font/VAL-webfont.ttf') format('truetype'),
-         url('assets/font/VAL-webfont.svg#valbold') format('svg');
+    font-family: 'sketchetica';
+    src: url('assets/font/2DE77E_0_0.eot');
+    src: url('assets/font/2DE77E_0_0.eot?#iefix') format('embedded-opentype'),
+         url('assets/font/2DE77E_0_0.woff2') format('woff2'),
+         url('assets/font/2DE77E_0_0.woff') format('woff'),
+         url('assets/font/2DE77E_0_0.ttf') format('truetype'),
+         url('assets/font/2DE77E_0_0.svg#valbold') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -13,11 +13,11 @@
 
 html {
 	background-color: #ddd;	
+	font-family: 'sketchetica';
 	
 }
 
-body {
-	font-family: 'helvetica';
+body {	
 	margin: 0;
 	padding: 0;	
 	width: 100%;
@@ -29,6 +29,13 @@ h1 {
 	color: #fff;
 }
 
+.close {
+	position: relative;
+	right: 25px;
+	top: 25px;
+	margin-bottom: 20px;
+}
+
 .middle {
 	position: fixed;
     top: 50%;
@@ -37,13 +44,65 @@ h1 {
     transform: translate(-50%, -50%);
 }
 
+.btn {
+	font-family: 'sketchetica';
+	font-size: 32px;
+	text-align: center;
+	background: none;
+	border: none;
+	display: block;
+}
+.btn.small {
+	font-size: 20px;
+}
+
 .avatar {
-	width: 100px;
-	height: 100px;
+	width: 130px;
+	height: 130px;
 	border-radius: 50%;
 	border: 2px solid #333;
 	background-color: transparent;
+	margin-bottom: 10px;
+	background-image: url('assets/avatar/default.png');
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
+.name {
+	text-align: center;
+}
+
+.menuButtonsWrapper {    
+    z-index: 680;
+    -webkit-transform: translateZ(0px);
+    transform: translateZ(0px);
+}
+
+.MenuButtons .buttonInoutWrapper {
+    opacity: 0;
+    -webkit-transform: translateY(200px);
+    transform: translateY(200px);
+}
+
+.MenuButtons .buttonInoutWrapper.addButtonWrapper {
+    -webkit-animation-delay: 100ms;
+    -webkit-transition-delay: 100ms;
+    animation-delay: 100ms;
+    transition-delay: 100ms;
+    margin-bottom: 8px;    
+}
+
+.MenuButtons.visible .buttonInoutWrapper {
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-transition-duration: 0.85s;
+    transition-duration: 0.85s;
+    -webkit-transition-timing-function: cubic-bezier(0.19, 1.32, 0.48, 1);
+    transition-timing-function: cubic-bezier(0.19, 1.32, 0.48, 1);
+    opacity: 1;
+}
+
+
 
 
 
@@ -94,12 +153,7 @@ h1 {
 	background-color: #fff;	
 }
 
-.btn {
-	font-size: 2em;
-	text-align: center;
-	background: none;
-	border: none;
-}
+
 
 .cell.blinking {
   -webkit-animation: 1s blink step-end infinite;
