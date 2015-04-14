@@ -20,6 +20,7 @@
 
 var playerParams = {
 	name: "Rasmus",
+	avatar: "avatar.png",
 	result: []	// Resultatet lagras efer varje spel i denna array
 }
 
@@ -328,7 +329,9 @@ function initChart() {
 
 function mainMenu() {
 	document.addEventListener('click', menuTrack, false);
-	menu.innerHTML = "<div class='middle'><button class='btn' id='btn_start'>Play</button><br/><br/><button class='btn' id='btn_profile'>Profile</button></div>";
+	menu.innerHTML = "<div class='middle'><button class='btn' id='btn_start'>Play</button>";
+	menu.innerHTML += "<br/><br/><button class='btn' id='btn_profile'>Profile</button>";
+	menu.innerHTML += "<br/><br/><button class='btn' id='btn_stats'>Stats</button></div>";
 
 	function menuTrack (ev) {
     switch (ev.target.id) {
@@ -340,15 +343,40 @@ function mainMenu() {
       case "btn_profile":
       	menu.innerHTML = ""; 
       	document.removeEventListener('click', menuTrack);
-      	showProfile();     	
+      	showProfile(); 
+      break;
+      case "btn_stats":
+      	menu.innerHTML = ""; 
+      	document.removeEventListener('click', menuTrack);
+      	showStats(); 
+      break;    	
     }
  }
 }
 
+function showStats() {
+	stats.innerHTML = "<button class='btn small' id='close'>X</button>";
+	loadResult();
+	//initChart();
+
+	document.addEventListener('click', statsTrack, false);
+
+    function statsTrack (ev) {
+    	switch (ev.target.id) {
+	    	case "close":
+	    		profile.innerHTML = "";
+	    		document.removeEventListener('click', statsTrack);
+	    		mainMenu();
+	    	break;
+	    }
+    }
+}
+
 function showProfile() {
 	profile.innerHTML = "<button class='btn small' id='close'>X</button>";
-    //initChart();
-    loadResult();
+    profile.innerHTML += "<div class='avatar' id='player_avatar'></div>";
+    profile.innerHTML += "<div class='name' id='player_name'>" + playerParams.name + "</div>";
+    
     document.addEventListener('click', profileTrack, false);
 
     function profileTrack (ev) {
